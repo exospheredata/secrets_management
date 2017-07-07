@@ -4,10 +4,26 @@ driver:
 
 provisioner:
   name: chef_zero
+  nodes_path: test/fixtures/nodes
+  clients_path: test/fixtures/clients
+  environments_path: test/fixtures/environments
+  data_bags_path: test/fixtures/data_bags
+
+  # You many wish to test your CHEF::Log.<level> messages while using test-kitchen.  Change the below
+  # value to the level of choice.  For cleaner output, comment this option out.
+  log_level: info
+
   # You may wish to disable always updating cookbooks in CI or other testing environments.
   # For example:
   #   always_update_cookbooks: <%= !ENV['CI'] %>
   always_update_cookbooks: true
+  retry_on_exit_code: # https://discourse.chef.io/t/test-kitchen-1-10-0-released/8721
+    - 35 # 35 is the exit code signaling that the node is rebooting
+  max_retries: 2
+  client_rb:
+    environment: test
+    exit_status: :enabled # Opt-in to the standardized exit codes
+    client_fork: false  # Forked instances don't return the real exit code
 
 verifier:
   name: inspec
@@ -19,8 +35,12 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[secrets_management::default]
+      - recipe[secrets_management_test::default]
     verifier:
       inspec_tests:
         - test/smoke/default
     attributes:
+      hashicorp:
+        token: <%= ENV['VAULT_TOKEN'] %>
+        address: <%= ENV['VAULT_ADDR'] %>
+        bag_item: <%= ENV['VAULT_ITEM'] %>
