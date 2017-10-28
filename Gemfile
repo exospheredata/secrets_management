@@ -6,7 +6,10 @@
 
 source 'https://rubygems.org'
 
+gem 'vault', '~> 0.1'
+
 group :test do
   gem 'fauxhai'
   gem 'tomlrb'
+  gem 'webmock'
 end

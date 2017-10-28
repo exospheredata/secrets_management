@@ -1,0 +1,8 @@
+name: secrets_management_tests
+title: InSpec Profile
+maintainer: 'Exosphere Data, LLC'
+copyright: 'Exosphere Data, LLC'
+copyright_email: chef@exospheredata.com
+license: MIT
+summary: An InSpec Compliance Profile
+version: 0.1.0
