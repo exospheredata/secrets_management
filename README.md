@@ -110,6 +110,7 @@ berks vendor .bundle
 for i in `ls .bundle`; do knife cookbook site share $i "Other" -o .bundle; done
 ```
 or
+
 ```powershell
 # From a Windows host via PowerShell
 berks vendor .bundle
