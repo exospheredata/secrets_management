@@ -4,14 +4,11 @@ maintainer_email 'chef@exospheredata.com'
 license 'MIT'
 description 'A resource provider for global secrets management'
 version '1.0.0'
-chef_version '>= 12.5'
+chef_version '>= 16.0' # 16.0+ includes Chef-Vault out of the box
 
 %w(debian ubuntu centos redhat amazon windows).each do |os|
   supports os
 end
-
-# Required for integratin with Chef-Vault
-depends 'chef-vault', '~> 3.0'
 
 # Required for integration with Hashicorp Vault
 gem 'vault', '~> 0.1'
