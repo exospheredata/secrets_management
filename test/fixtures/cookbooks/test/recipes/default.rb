@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: secrets_management_test
+# Cookbook:: secrets_management_test
 # Recipe:: default
 #
 # Copyright:: 2017, Exosphere Data, LLC, All Rights Reserved.

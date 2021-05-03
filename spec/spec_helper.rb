@@ -5,5 +5,3 @@ require 'vault'
 require 'chef-vault'
 
 WebMock.disable_net_connect!(allow_localhost: true, allow: 'supermarket.chef.io')
-
-at_exit { ChefSpec::Coverage.report! }

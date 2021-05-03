@@ -29,17 +29,18 @@ This cookbook provides a Ruby library helper to support management of Hashicorp 
 
 ### Platforms
 
-This resource should work on any Chef supported platform with a Chef Client meeting the minimum requirements.
+This resource should work on any Chef supported platform with a Chef Infra Client meeting the minimum requirements.
 
-### Chef
+### Chef Infra Client
 
-- 12.5+
+- 16.0+
 
 ### Cookbooks
 
-- chef-vault, '~> 3.0'
+- none
 
 ## Usage
+
 To use the libraries, declare a dependency on this cookbook, and then use the libary as described in the section [SecretsManagement::DSL](#secretsmanagementdsl).
 
 ### default
@@ -51,6 +52,7 @@ This is an empty recipe and should _not_ be modified.
 ### SecretsManagement::DSL
 
 #### open_secret_item
+
 The `open_secret_item` method supports accessing existing Hashicorp Vault, Chef Vault, and Chef DataBag items.  The method supports two possible models for getting the data - `determine_bag_type` or `find_<type>_item`.  By default, the method will attempt to perform the lookup unless the attribute `:type` is sent.
 
 Properties:
@@ -91,6 +93,7 @@ bag = open_secret_item('secret/chef/os', 'windows', type: 'vault', vault: vault_
 ```
 
 ## Upload to Chef Server
+
 This cookbook should be included in each organization of your CHEF environment.  When importing, leverage Berkshelf:
 
 `berks upload --except test`
@@ -100,6 +103,7 @@ _NOTE:_ use the --no-ssl-verify switch if the CHEF server in question has a self
 `berks upload --no-ssl-verify --except test`
 
 ## Upload to Private Chef Supermarket
+
 _NOTE:_ You must set the following key `knife[:supermarket_site] = 'https://<your-supermarket-server>'`.
 
 This cookbook should be uploaded to the CHEF Supermarket server.  When importing, leverage Berkshelf vendor command:
@@ -109,6 +113,7 @@ This cookbook should be uploaded to the CHEF Supermarket server.  When importing
 berks vendor .bundle
 for i in `ls .bundle`; do knife cookbook site share $i "Other" -o .bundle; done
 ```
+
 or
 
 ```powershell
@@ -122,6 +127,7 @@ foreach ($i in (Get-ChildItem -Path .bundle) ){
 ## Cookbook Testing
 
 ### Before you begin
+
 Setup your testing and ensure all dependencies are installed.  Open a terminal windows and execute:
 
 ```ruby
@@ -154,6 +160,7 @@ data_bags_path: "test/fixtures/data_bags/"
 ```
 
 ### Rakefile and Tasks
+
 This repo includes a **Rakefile** for common tasks
 
 | Task Command | Description |
@@ -177,6 +184,7 @@ This repo includes a **Rakefile** for common tasks
 4. `rake integration`: This will run all of the kitchen tests
 
 ### Test Cookbook (secrets_management_test)
+
 _a test cookbook for the available LWRPs_
 
 The cookbook secrets_management does not include any executable recipes as it is designed to be an utility cookbook and support other initiatives.  For the purposes of testing and validating this code, we have included a test cookbook with pre-configured recipes.
@@ -188,16 +196,17 @@ The cookbook secrets_management does not include any executable recipes as it is
 | _chef_vault_ | Test gathering secrets from ChefVault bags |
 | _data_bag_ | Test gathering secrets from Chef DataBags |
 
-
 ### Compliance Profile
+
 Not included as this is a Resource only cookbook with no included recipes.
 
 ## Contribute
- - Fork it
- - Create your feature branch (git checkout -b my-new-feature)
- - Commit your changes (git commit -am 'Add some feature')
- - Push to the branch (git push origin my-new-feature)
- - Create new Pull Request
+
+- Fork it
+- Create your feature branch (git checkout -b my-new-feature)
+- Commit your changes (git commit -am 'Add some feature')
+- Push to the branch (git push origin my-new-feature)
+- Create new Pull Request
 
 ## License & Authors
 
