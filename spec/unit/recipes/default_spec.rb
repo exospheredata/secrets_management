@@ -51,10 +51,10 @@ describe 'secrets_management_test::default' do
   context 'Validate supported installations' do
     platforms = {
       'redhat' => {
-        'versions' => %w(7.3),
+        'versions' => %w(7),
       },
       'ubuntu' => {
-        'versions' => %w(16.04),
+        'versions' => %w(18.04),
       },
     }
     platforms.each do |platform, components|
