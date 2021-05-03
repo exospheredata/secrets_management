@@ -162,5 +162,5 @@ module SecretsManagement
   end
 end
 
-Chef::Recipe.send(:include, SecretsManagement::DSL)
+Chef::DSL::Recipe.send(:include, SecretsManagement::DSL)
 Chef::Resource.send(:include, SecretsManagement::DSL)

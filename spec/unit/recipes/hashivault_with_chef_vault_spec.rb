@@ -33,11 +33,11 @@ describe 'secrets_management_test::hashivault_with_chef_vault' do
   context 'Validate supported installations' do
     platforms = {
       'redhat' => {
-        'versions' => %w(7.3)
+        'versions' => %w(7.3),
       },
       'ubuntu' => {
-        'versions' => %w(16.04)
-      }
+        'versions' => %w(16.04),
+      },
     }
     platforms.each do |platform, components|
       components['versions'].each do |version|
